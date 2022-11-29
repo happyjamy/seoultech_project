@@ -1,25 +1,38 @@
-export abstract class CommonService<Entity, CreateDto, UpdateDto> {
+export abstract class CommonService<
+  Entity,
+  CreateCommonDto,
+  UpdateCommonDto,
+  CreateCommon,
+> {
   constructor(private repository: any) {
     this.repository = repository;
   }
 
-  async create(createDto: CreateDto, userId: string): Promise<Entity> {
-    return await this.repository.create(createDto, userId);
+  async create(
+    createDto: CreateCommonDto,
+    userId: string,
+  ): Promise<CreateCommon> {
+    const createdCommon = {
+      ...createDto,
+      authorId: userId,
+      viewCount: 0,
+    };
+    return await this.repository.create(createdCommon);
   }
 
-  async findAll() {
+  async findAll(): Promise<CreateCommon[]> {
     return await this.repository.findAll();
   }
 
-  async findOne(id: string) {
+  async findOne(id: string): Promise<CreateCommon> {
     return await this.repository.findOne(id);
   }
 
-  async update(id: string, updateDto: UpdateDto) {
+  async update(id: string, updateDto: UpdateCommonDto): Promise<CreateCommon> {
     return await this.repository.update(id, updateDto);
   }
 
-  async remove(id: string) {
+  async remove(id: string): Promise<CreateCommon> {
     return await this.repository.remove(id);
   }
 }
