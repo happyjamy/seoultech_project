@@ -4,7 +4,7 @@ export class Common {
   @Prop({ required: true })
   title: string;
   @Prop({ required: true })
-  authorId: number;
+  authorId: string;
   @Prop({ required: true })
   content: string;
   @Prop({ required: true })
