@@ -26,13 +26,13 @@ export class UserRepository {
     return this.userModel.findOne({ _id: id }).lean().exec();
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+  async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
     return this.userModel
       .findByIdAndUpdate(id, updateUserDto, { new: true })
       .exec();
   }
 
-  async remove(id: number): Promise<any> {
+  async remove(id: string): Promise<any> {
     return this.userModel.findByIdAndRemove(id).exec();
   }
 }
