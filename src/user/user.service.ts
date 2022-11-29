@@ -52,7 +52,7 @@ export class UserService {
     return this.userRepository.update(id, updateUserDto);
   }
 
-  async remove(id: number): Promise<any> {
+  async remove(id: string): Promise<any> {
     return this.userRepository.remove(id);
   }
 }

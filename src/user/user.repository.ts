@@ -32,7 +32,7 @@ export class UserRepository {
       .exec();
   }
 
-  async remove(id: number): Promise<any> {
+  async remove(id: string): Promise<any> {
     return this.userModel.findByIdAndRemove(id).exec();
   }
 }
