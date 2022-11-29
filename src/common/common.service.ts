@@ -28,6 +28,10 @@ export abstract class CommonService<
     return await this.repository.findOne(id);
   }
 
+  async findeOneAndviewCountUp(id: string): Promise<CreateCommon> {
+    return await this.repository.findeOneAndviewCountUp(id);
+  }
+
   async update(id: string, updateDto: UpdateCommonDto): Promise<CreateCommon> {
     return await this.repository.update(id, updateDto);
   }

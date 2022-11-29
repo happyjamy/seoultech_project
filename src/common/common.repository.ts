@@ -24,6 +24,12 @@ export abstract class CommonRepository<
     return await this.model.findById(id).exec();
   }
 
+  async findeOneAndviewCountUp(id: string): Promise<CreateCommon> {
+    return await this.model
+      .findOneAndUpdate({ id }, { $inc: { viewCount: 1 } }, { new: true })
+      .exec();
+  }
+
   async update(
     id: string,
     updateEntityDto: UpdateCommonDto,

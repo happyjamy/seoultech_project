@@ -36,7 +36,7 @@ export class CommonController<
   @ApiResponse({ status: 200, type: CreateCommon })
   @Get(':id')
   findOne(@Param('id') id: string): Promise<CreateCommon> {
-    return this.commonService.findOne(id);
+    return this.commonService.findeOneAndviewCountUp(id);
   }
 
   @ApiResponse({ status: 200, type: CreateCommon })
