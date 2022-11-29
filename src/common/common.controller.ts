@@ -1,7 +1,7 @@
 import { Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { UserId } from 'src/auth/decorator/user-id.decorator';
 
-export abstract class CommonController<CreateCommonDto, UpdateCommonDto> {
+export class CommonController<CreateCommonDto, UpdateCommonDto> {
   constructor(private commonService: any) {
     this.commonService = commonService;
   }
