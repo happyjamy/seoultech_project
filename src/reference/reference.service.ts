@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CommonService } from 'src/common/common.service';
 import {
+  CreateReference,
   CreateReferenceDto,
   UpdateReferenceDto,
 } from './dto/create-reference.dto';
@@ -11,7 +12,8 @@ import { ReferenceRepository } from './reference.repository';
 export class ReferenceService extends CommonService<
   Reference,
   CreateReferenceDto,
-  UpdateReferenceDto
+  UpdateReferenceDto,
+  CreateReference
 > {
   constructor(private readonly referenceRepository: ReferenceRepository) {
     super(referenceRepository);

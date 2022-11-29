@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common';
 import { NoticeService } from './notice.service';
 import { NoticeController } from './notice.controller';
 import { NoticeRepository } from './notice.repository';
-import { MongooseModule, Schema } from '@nestjs/mongoose';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [

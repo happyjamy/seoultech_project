@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule, Schema } from '@nestjs/mongoose';
+import { MongooseModule } from '@nestjs/mongoose';
 import { Reference, ReferenceSchema } from './entity/reference.entitiy';
 import { ReferenceController } from './reference.controller';
 import { ReferenceRepository } from './reference.repository';
