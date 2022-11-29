@@ -43,6 +43,12 @@ export class UserService {
   }
 
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
+    if (updateUserDto.password) {
+      updateUserDto.password = await bcrypt.hash(
+        updateUserDto.password,
+        parseInt(this.configService.get('HASHING_SALT_OF_ROUND')),
+      );
+    }
     return this.userRepository.update(id, updateUserDto);
   }
 

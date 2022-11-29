@@ -7,6 +7,7 @@ import {
   Param,
   BadRequestException,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto, CreateUserResponse } from './dto/create-user.dto';
@@ -17,7 +18,7 @@ import {
   ApiCreatedResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { JwtAuthGuard, JwtCheckGuard } from 'src/auth/guards/jwt-auth.guard';
+import { JwtAuthGuard, JwtAuthGuard, JwtCheckGuard } from 'src/auth/guards/jwt-auth.guard';
 import { UserId } from 'src/auth/decorator/user-id.decorator';
 
 @ApiTags('User')
@@ -52,16 +53,16 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  @Get()
-  async findAll() {
-    return this.userService.findAll();
-  }
-
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @Get('me')
-  async findMe(@UserId() userId: string) {
-    return this.userService.findOne(userId);
+  async findMe(@Req() req) {
+    return req.user;
+  }
+
+  @Get()
+  async findAll() {
+    return this.userService.findAll();
   }
 
   @Get(':id')
