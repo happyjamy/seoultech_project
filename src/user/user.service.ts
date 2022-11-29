@@ -42,11 +42,11 @@ export class UserService {
     return this.userRepository.findOne(id);
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+  async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
     return this.userRepository.update(id, updateUserDto);
   }
 
-  async remove(id: number): Promise<any> {
+  async remove(id: string): Promise<any> {
     return this.userRepository.remove(id);
   }
 }
