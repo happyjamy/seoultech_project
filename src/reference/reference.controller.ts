@@ -11,7 +11,7 @@ import { ReferenceService } from './reference.service';
 @ApiTags('Reference')
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
-@Controller('notice')
+@Controller('reference')
 export class ReferenceController extends CommonController<
   CreateReferenceDto,
   UpdateReferenceDto
