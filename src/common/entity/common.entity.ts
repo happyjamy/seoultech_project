@@ -1,6 +1,6 @@
 import { Prop } from '@nestjs/mongoose';
 
-export class Common {
+export class Entity {
   @Prop({ required: true })
   title: string;
   @Prop({ required: true })
@@ -13,4 +13,6 @@ export class Common {
   createdAt: Date;
   @Prop({ required: false })
   updatedAt: Date;
+  @Prop({ required: false })
+  viewCount: number;
 }
