@@ -18,8 +18,7 @@ import {
   ApiCreatedResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { JwtAuthGuard, JwtAuthGuard, JwtCheckGuard } from 'src/auth/guards/jwt-auth.guard';
-import { UserId } from 'src/auth/decorator/user-id.decorator';
+import { JwtAuthGuard, JwtCheckGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @ApiTags('User')
 @Controller('user')
