@@ -2,7 +2,7 @@ import {
   CreateCommon,
   CreateCommonDto,
   UpdateCommonDto,
-} from 'src/common/dto/common-dto';
+} from 'src/common/dto/common.dto';
 
 export class CreateNoticeDto extends CreateCommonDto {}
 
