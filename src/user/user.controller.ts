@@ -17,7 +17,8 @@ import {
   ApiCreatedResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { JwtCheckGuard } from 'src/auth/guards/jwt-auth.guard';
+import { JwtAuthGuard, JwtCheckGuard } from 'src/auth/guards/jwt-auth.guard';
+import { UserId } from 'src/auth/decorator/user-id.decorator';
 
 @ApiTags('User')
 @Controller('user')
@@ -56,6 +57,13 @@ export class UserController {
     return this.userService.findAll();
   }
 
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
+  @Get('me')
+  async findMe(@UserId() userId: string) {
+    return this.userService.findOne(userId);
+  }
+
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return this.userService.findOne(id);
@@ -63,6 +71,6 @@ export class UserController {
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+    return this.userService.update(id, updateUserDto);
   }
 }

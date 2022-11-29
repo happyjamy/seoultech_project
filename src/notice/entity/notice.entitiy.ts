@@ -1,4 +1,4 @@
-import { Common } from './../../common/entity/common-entity';
+import { Common } from '../../common/entity/common.entity';
 import { Schema, SchemaFactory } from '@nestjs/mongoose';
 
 export type NoticeDocument = Notice & Document;
