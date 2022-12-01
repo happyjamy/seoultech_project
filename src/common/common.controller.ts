@@ -1,5 +1,5 @@
 import { Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { ApiBody, ApiResponse } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiQuery, ApiResponse } from '@nestjs/swagger';
 import { UserId } from 'src/auth/decorator/user-id.decorator';
 import {
   CreateCommon,
@@ -33,6 +33,9 @@ export class CommonController<
     return this.commonService.findAll();
   }
 
+  @ApiOperation({description: 
+    "이 요청을 보내면 자동으로 해당 게시글의 viewCount를 1 올려서 전송해 줍니다. 파라미터의 id 는 게시글의 id 입니다"
+  })
   @ApiResponse({ status: 200, type: CreateCommon })
   @Get(':id')
   findOne(@Param('id') id: string): Promise<CreateCommon> {
