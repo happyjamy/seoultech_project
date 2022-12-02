@@ -1,3 +1,5 @@
+import { Types } from "mongoose";
+
 export abstract class CommonService<
   Entity,
   CreateCommonDto,
@@ -12,9 +14,10 @@ export abstract class CommonService<
     createDto: CreateCommonDto,
     userId: string,
   ): Promise<CreateCommon> {
+    const author = new Types.ObjectId(userId);
     const createdCommon = {
       ...createDto,
-      authorId: userId,
+      author,
       viewCount: 0,
     };
     return await this.repository.create(createdCommon);

@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
 import { Types } from 'mongoose';
+import { CreateUser } from 'src/user/dto/create-user.dto';
 
 export class CreateCommonDto {
   @ApiProperty()
@@ -46,7 +47,7 @@ export class CreateCommon {
   @ApiProperty()
   imageUrl: string[];
   @ApiProperty()
-  authorId: string;
+  author: CreateUser;
   @ApiProperty()
   createdAt: Date;
   @ApiProperty()
