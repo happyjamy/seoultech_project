@@ -8,10 +8,12 @@ import {
   UpdateNoticeDto,
 } from './dto/create-notice.dto';
 import { Notice } from './entity/notice.entitiy';
+import { CheckNoticeGuard } from './guard/check-notice.guard';
 import { NoticeService } from './notice.service';
 
 @ApiTags('Notice')
 @ApiBearerAuth()
+@UseGuards(CheckNoticeGuard)
 @UseGuards(JwtAuthGuard)
 @Controller('notice')
 export class NoticeController extends CommonController<
