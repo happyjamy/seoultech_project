@@ -13,7 +13,6 @@ import { ReferenceService } from './reference.service';
 
 @ApiTags('Reference')
 @ApiBearerAuth()
-@UseGuards(CheckReferenceGuard)
 @UseGuards(JwtAuthGuard)
 @Controller('reference')
 export class ReferenceController extends CommonController<
