@@ -7,7 +7,7 @@ export class Entity {
   _id: Types.ObjectId;
   @Prop({ required: true })
   title: string;
-  @Prop({ required: true, type : Schema.Types.ObjectId , ref : 'User' })
+  @Prop({ required: true, type: Schema.Types.ObjectId, ref: 'User' })
   author: CreateUser;
   @Prop({ required: true })
   content: string;

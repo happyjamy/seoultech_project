@@ -26,7 +26,11 @@ export abstract class CommonRepository<
 
   async findeOneAndviewCountUp(id: string): Promise<CreateCommon> {
     return await this.model
-      .findOneAndUpdate({ _id:id }, { $inc: { viewCount: 1 } }, { new: true, timestamps:false })
+      .findOneAndUpdate(
+        { _id: id },
+        { $inc: { viewCount: 1 } },
+        { new: true, timestamps: false },
+      )
       .populate('author')
       .exec();
   }
@@ -36,7 +40,7 @@ export abstract class CommonRepository<
     updateEntityDto: UpdateCommonDto,
   ): Promise<CreateCommon> {
     return await this.model
-      .findOneAndUpdate({ id }, updateEntityDto, { new: true })
+      .findOneAndUpdate({ _id: id }, updateEntityDto, { new: true })
       .populate('author')
       .exec();
   }
