@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto, CreateUserResponse } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateUserDto, UpdateUserPasswordDto } from './dto/update-user.dto';
 import {
   ApiBadRequestResponse,
   ApiBearerAuth,
@@ -67,6 +67,14 @@ export class UserController {
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return this.userService.findOne(id);
+  }
+
+  @Patch('password/:id')
+  async updatePassword(
+    @Param('id') id: string,
+    @Body() updateUserPasswordDto: UpdateUserPasswordDto,
+  ) {
+    return this.userService.updatePassword(id, updateUserPasswordDto);
   }
 
   @Patch(':id')

@@ -20,6 +20,13 @@ export abstract class CommonRepository<
     return await this.model.find().populate('author').exec();
   }
 
+  async findAllByKeyword(keyword: string): Promise<CreateCommon[]> {
+    return await this.model
+      .find({ title: { $regex: keyword } })
+      .populate('author')
+      .exec();
+  }
+
   async findOne(id: string): Promise<CreateCommon> {
     return await this.model.findById(id).populate('author').exec();
   }

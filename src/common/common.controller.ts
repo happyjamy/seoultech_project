@@ -1,4 +1,4 @@
-import { Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiQuery, ApiResponse } from '@nestjs/swagger';
 import { UserId } from 'src/auth/decorator/user-id.decorator';
 import {
@@ -27,9 +27,21 @@ export class CommonController<
     return await this.commonService.create(createCommonDto, userId);
   }
 
+  @ApiOperation({
+    description:
+      'title 쿼리로 검색할 제목 키워드를 입력해주세요. 입력하지 않으면 전체 게시글을 반환합니다.',
+  })
+  @ApiQuery({
+    name: 'title',
+    required: false,
+    description: '검색할 제목 키워드를 입력해주세요',
+  })
   @ApiResponse({ status: 200, type: [CreateCommon] })
   @Get()
-  findAll(): Promise<CreateCommon[]> {
+  findAll(@Query('title') title: string): Promise<CreateCommon[]> {
+    if (title) {
+      return this.commonService.findAllByKeyword(title);
+    }
     return this.commonService.findAll();
   }
 

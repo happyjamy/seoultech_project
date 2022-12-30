@@ -31,6 +31,10 @@ export abstract class CommonService<
     return await this.repository.findOne(id);
   }
 
+  async findAllByKeyword(keyword: string): Promise<CreateCommon[]> {
+    return await this.repository.findAllByKeyword(keyword);
+  }
+
   async findeOneAndviewCountUp(id: string): Promise<CreateCommon> {
     return await this.repository.findeOneAndviewCountUp(id);
   }

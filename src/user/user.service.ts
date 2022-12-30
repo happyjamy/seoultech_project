@@ -1,8 +1,12 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  ForbiddenException,
+} from '@nestjs/common';
 import { User } from './entities/user.entity';
 import { UserRepository } from './user.repository';
 import { CreateUserDto, CreateUserResponse } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateUserDto, UpdateUserPasswordDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
 import { AuthService } from 'src/auth/auth.service';
 import { ConfigService } from '@nestjs/config';
@@ -50,6 +54,27 @@ export class UserService {
       );
     }
     return this.userRepository.update(id, updateUserDto);
+  }
+
+  async updatePassword(
+    id: string,
+    updateUserPasswordDto: UpdateUserPasswordDto,
+  ) {
+    const userPassword = (await this.userRepository.findOne(id)).password;
+    const oldPassword = await bcrypt.hash(
+      updateUserPasswordDto.oldPassword,
+      parseInt(this.configService.get('HASHING_SALT_OF_ROUND')),
+    );
+    const isPasswordMatch = await bcrypt.compare(userPassword, oldPassword);
+    if (!isPasswordMatch) {
+      throw new ForbiddenException();
+    }
+
+    const newPassword = await bcrypt.hash(
+      updateUserPasswordDto.newPassword,
+      parseInt(this.configService.get('HASHING_SALT_OF_ROUND')),
+    );
+    return this.userRepository.update(id, { password: newPassword });
   }
 
   async remove(id: string): Promise<any> {

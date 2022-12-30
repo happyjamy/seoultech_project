@@ -1,3 +1,6 @@
+import { FreeBoardModule } from './free-board/free-board.module';
+import { ReportModule } from './report/report.module';
+import { QnaModule } from './qna/qna.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -22,6 +25,9 @@ import ReferenceModule from './reference/reference.module';
     AuthModule,
     NoticeModule,
     ReferenceModule,
+    QnaModule,
+    ReportModule,
+    FreeBoardModule,
   ],
 })
 export class AppModule {}
